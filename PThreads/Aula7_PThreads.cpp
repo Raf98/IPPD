@@ -157,13 +157,6 @@ void *insertBuffer(void *inputFormal)
         cout << "Producer ID: " << pthread_self() << "; Item inserted! Number " << itemNum << endl;
         cout << "Process ID: " << pthread_self() << "; Items left: " << input->itemsToInsert << "\n\n";
 
-        if (input->itemsToInsert == 0)
-        {
-            pthread_cond_signal(&condCons);
-            pthread_mutex_unlock(&mutex);
-            pthread_exit(NULL);
-        }
-
         //acorda um thread consumidora na espera da variavel de condicao condCons, se houver
         pthread_cond_signal(&condCons);
 
